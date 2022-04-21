@@ -1,0 +1,24 @@
+{
+  "name": "backend-graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src",
+  "scripts": {
+    "codegen": "cd src/schema/ && python index.gen.py > index.js && cd -",
+    "start": "cd src/schema/ && python index.gen.py > index.js && cd - && node src/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-datasource-rest": "^3.5.1",
+    "apollo-server": "^3.6.3",
+    "dotenv": "^16.0.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@apollo/client": "^3.5.10",
+    "graphql": "^16.3.0"
+  }
+}
