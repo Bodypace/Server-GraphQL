@@ -127,6 +127,10 @@ class BodypaceAPI extends RESTDataSource {
     return this.onData(this.get('eats', { MealTimeId: mealTimeId }))
   }
 
+  patchEat(id, data) {
+    return this.patch(`eats/${id}`, data)
+  }
+
   // Buy
 
   getBuy(id) {

@@ -4,8 +4,9 @@ const typeDefs = gql`
   type Product {
     name: String!
     vendor: String
-    units: Int!
-    unitSize: Int!
+    units: Int
+    unitSize: Int
+    size: Int
     barcode: String
     kcal: Int!
     protein: Float!
