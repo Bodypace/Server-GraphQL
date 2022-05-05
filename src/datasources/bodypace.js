@@ -115,6 +115,10 @@ class BodypaceAPI extends RESTDataSource {
     return this.onData(this.get('mealtimes', { day }))
   }
 
+  patchMealTime(id, data) {
+    return this.patch(`mealtimes/${id}`, data)
+  }
+
   // Water
 
   getWater(day) {
