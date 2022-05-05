@@ -4,8 +4,7 @@
   "description": "",
   "main": "src",
   "scripts": {
-    "codegen": "cd src/schema/ && python index.gen.py > index.js && cd -",
-    "start": "cd src/schema/ && python index.gen.py > index.js && cd - && node src/",
+    "start": "node src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
