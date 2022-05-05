@@ -1,4 +1,5 @@
 const { gql } = require('apollo-server')
+const { makeResponseCreator } = require('../resolvers-common')
 
 const typeDefs = gql`
   extend type Mutation {
@@ -35,13 +36,7 @@ const typeDefs = gql`
   }
 `
 
-const response = async promise => {
-  const response = await promise
-  if (response === null) {
-    return { success: false }
-  }
-  return { success: true, meal: response }
-}
+const response = makeResponseCreator('meal')
 
 const resolvers = {
   Mutation: {
