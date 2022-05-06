@@ -40,7 +40,7 @@ class BodypaceAPI extends RESTDataSource {
       return null
     }
 
-    return reponse
+    return response
   }
 
   async loginUser(email, password) {
@@ -128,17 +128,37 @@ class BodypaceAPI extends RESTDataSource {
   // Eat
 
   getEats(mealTimeId) {
-    return this.onData(this.get('eats', { MealTimeId: mealTimeId }))
+    return this.onData(this.get('eats', { MealTimeId: mealTimeId, wasted: null }))
   }
 
   patchEat(id, data) {
     return this.patch(`eats/${id}`, data)
   }
 
+  getWasted(day) {
+    return this.onData(this.get('eats/', {
+      'wasted': day
+    }))
+  }
+
   // Buy
 
   getBuy(id) {
     return this.nullOn404(this.get(`buys/${id}`))
+  }
+
+  getInventory(day) {
+    return this.onData(this.get('buys/', {
+      '$or[0][finished]': false,
+      '$or[0][day][$lt]': day,
+      '$or[1][day]': day,
+    }))
+  }
+
+  getShoppingList() {
+    return this.onData(this.get('buys/', {
+      'day': null,
+    }))
   }
 
   // Product
