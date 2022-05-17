@@ -8,7 +8,10 @@ const typeDefs = gql`
 `
 
 const resolvers = {
-
+  Query: {
+    products: (_, __, { dataSources } ) =>
+      dataSources.bodypaceAPI.getProducts()
+  }
 }
 
 module.exports = { typeDefs, resolvers }

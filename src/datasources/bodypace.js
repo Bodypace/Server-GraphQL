@@ -166,6 +166,10 @@ class BodypaceAPI extends RESTDataSource {
   getProduct(id) {
     return this.get(`products/${id}`)
   }
+
+  getProducts() {
+    return this.onData(this.get('products'))
+  }
 }
 
 module.exports = BodypaceAPI
