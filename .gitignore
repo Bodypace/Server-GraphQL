@@ -112,6 +112,7 @@ data/
 
 # Prod info
 .prod.env
+.env
 
 # vscode
 .vscode/
