@@ -100,11 +100,10 @@ class BodypaceAPI extends RESTDataSource {
     return this.onData(this.get("goals"));
   }
 
-  getGoal(day) {
+  async getGoal(day) {
     // this has daySince
-    return this.onData(this.get("goals", { id: 4 }), {
-      onlyFirstResult: true,
-    });
+    const goals = await this.get("goals", { id: 4 });
+    return goals.data[0];
   }
 
   patchGoal(id, data) {

@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server')
+const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   extend type Query {
@@ -9,17 +9,17 @@ const typeDefs = gql`
     inventory: [Buy]!
     shoppingList: [Buy]!
     wasted: [Eat]!
-    goal: Goal!
+    goal: Goal
     mealTimes: [MealTime]!
   }
-`
+`;
 
 const resolvers = {
   Query: {
-    home: (_, { day }, context ) => {
-      context.day = day
-      return {}
-    }
+    home: (_, { day }, context) => {
+      context.day = day;
+      return {};
+    },
   },
   Home: {
     inventory: (_, __, { dataSources, day }) =>
@@ -31,12 +31,11 @@ const resolvers = {
     wasted: (_, __, { dataSources, day }) =>
       dataSources.bodypaceAPI.getWasted(day),
 
-    goal: (_, __, { dataSources, day }) =>
-      dataSources.bodypaceAPI.getGoal(day),
+    goal: (_, __, { dataSources, day }) => dataSources.bodypaceAPI.getGoal(day),
 
     mealTimes: (_, __, { dataSources, day }) =>
       dataSources.bodypaceAPI.getMealTimes(day),
   },
-}
+};
 
-module.exports = { typeDefs, resolvers }
+module.exports = { typeDefs, resolvers };
