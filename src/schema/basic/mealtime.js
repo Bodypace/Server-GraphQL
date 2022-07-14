@@ -1,5 +1,5 @@
-const { gql } = require('apollo-server')
-const { makeResponseCreator } = require('../resolvers-common')
+const { gql } = require("apollo-server");
+const { makeResponseCreator } = require("../resolvers-common");
 
 const typeDefs = gql`
   extend type Mutation {
@@ -23,18 +23,18 @@ const typeDefs = gql`
     day: String
     hour: String
     MealId: ID
-  } 
+  }
 
   type MealTime {
-    id: ID!
+    id: ID
     day: String!
     hour: String!
     meal: Meal!
     eats: [Eat]!
   }
-`
+`;
 
-const response = makeResponseCreator('mealTime')
+const response = makeResponseCreator("mealTime");
 
 const resolvers = {
   Mutation: {
@@ -43,11 +43,11 @@ const resolvers = {
   },
   MealTime: {
     meal: (parent, __, { dataSources }) =>
-      dataSources.bodypaceAPI.getMeal(parent.MealId),
+      parent.meal || dataSources.bodypaceAPI.getMeal(parent.MealId),
 
     eats: (parent, __, { dataSources }) =>
       dataSources.bodypaceAPI.getEats(parent.id),
-  }
-}
+  },
+};
 
-module.exports = { typeDefs, resolvers }
+module.exports = { typeDefs, resolvers };

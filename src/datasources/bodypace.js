@@ -120,6 +120,16 @@ class BodypaceAPI extends RESTDataSource {
     return this.onData(this.get("meals"));
   }
 
+  getMealsForDay(day) {
+    return this.onData(
+      this.get("meals", {
+        "daySince[$lte]": day,
+        "$or[0][dayUntil][$gte]": day,
+        "$or[1][dayUntil]": null,
+      })
+    );
+  }
+
   getMeal(id) {
     return this.get(`meals/${id}`);
   }
